@@ -8,6 +8,6 @@ Update new version of Date Time Picker ios clone for Android
 		}
 	}
   
-  dependencies {
+	dependencies {
 	        implementation 'com.github.fadlifebriansyah:datetimepickerios:Tag'
 	}
