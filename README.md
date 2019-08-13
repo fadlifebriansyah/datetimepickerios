@@ -9,5 +9,5 @@ Update new version of Date Time Picker ios clone for Android
 	}
   
 	dependencies {
-	        implementation 'com.github.fadlifebriansyah:datetimepickerios:Tag'
+	        implementation 'com.github.fadlifebriansyah:datetimepickerios:1.0.0'
 	}
