@@ -17,6 +17,8 @@ public class SlideDateTimePicker
     private Date mMinDate;
     private Date mMaxDate;
     private boolean mIsClientSpecified24HourTime;
+    private boolean hideTime;
+    private boolean hideDate;
     private boolean mIs24HourTime;
     private int mTheme;
     private int mIndicatorColor;
@@ -115,11 +117,29 @@ public class SlideDateTimePicker
      *                      <tt>false</tt> to force 12-hour (AM/PM) time
      *                      format.
      */
-    public void setIs24HourTime(boolean is24HourTime)
+    private void setIs24HourTime(boolean is24HourTime)
     {
         setIsClientSpecified24HourTime(true);
         mIs24HourTime = is24HourTime;
     }
+
+    /**
+     * <p>Sets whether the TimePicker displays time view</p>
+     *
+     * <p>If this method is not called, both views wil shows</p>
+     *
+     *
+     * <p>Must be called before {@link #show()}.</p>
+     *
+     * @param hideTime  <tt>true</tt> to force time view to hide,
+     *                      <tt>false</tt> default hide time value is false
+     *
+     */
+    private void setHideTime(boolean hideTime)
+    {
+        this.hideTime = hideTime;
+    }
+
 
     /**
      * Sets the theme of the dialog. If no theme is specified, it
@@ -169,7 +189,8 @@ public class SlideDateTimePicker
                         mIsClientSpecified24HourTime,
                         mIs24HourTime,
                         mTheme,
-                        mIndicatorColor);
+                        mIndicatorColor,
+                        hideTime);
 
         dialogFragment.show(mFragmentManager,
                 SlideDateTimeDialogFragment.TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT);
@@ -190,6 +211,7 @@ public class SlideDateTimePicker
         private Date minDate;
         private Date maxDate;
         private boolean isClientSpecified24HourTime;
+        private boolean hideTimeView = false;
         private boolean is24HourTime;
         private int theme;
         private int indicatorColor;
@@ -246,6 +268,15 @@ public class SlideDateTimePicker
         }
 
         /**
+         * @see SlideDateTimePicker#setHideTime(boolean)
+         */
+        public Builder setHideTimeView(boolean hideTime)
+        {
+            this.hideTimeView = hideTime;
+            return this;
+        }
+
+        /**
          * @see SlideDateTimePicker#setTheme(int)
          */
         public Builder setTheme(int theme)
@@ -282,6 +313,7 @@ public class SlideDateTimePicker
             picker.setIs24HourTime(is24HourTime);
             picker.setTheme(theme);
             picker.setIndicatorColor(indicatorColor);
+            picker.setHideTime(hideTimeView);
 
             return picker;
         }

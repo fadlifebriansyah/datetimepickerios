@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 .setListener(listener)
                 .setInitialDate(new Date())
                 .setMinDate(currentTime)
+                .setHideTimeView(false) /*you can hide date by setting it to true*/
                 .build()
                 .show();
     }
