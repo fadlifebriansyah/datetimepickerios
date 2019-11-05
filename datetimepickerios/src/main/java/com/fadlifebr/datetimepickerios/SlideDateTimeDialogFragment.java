@@ -43,7 +43,6 @@ public class SlideDateTimeDialogFragment extends DialogFragment
     private Date mMaxDate;
     private boolean mIsClientSpecified24HourTime;
     private boolean hideTime;
-    private boolean hideDate;
     private boolean mIs24HourTime;
     private Calendar mCalendar;
     private int mDateFlags =
@@ -70,12 +69,11 @@ public class SlideDateTimeDialogFragment extends DialogFragment
      * @param theme
      * @param indicatorColor
      * @param hideTime
-     * @param hideDate
      * @return
      */
     public static SlideDateTimeDialogFragment newInstance(SlideDateTimeListener listener,
                                                           Date initialDate, Date minDate, Date maxDate, boolean isClientSpecified24HourTime,
-                                                          boolean is24HourTime, int theme, int indicatorColor, boolean hideTime, boolean hideDate) {
+                                                          boolean is24HourTime, int theme, int indicatorColor, boolean hideTime) {
         mListener = listener;
 
         // Create a new instance of SlideDateTimeDialogFragment
@@ -91,7 +89,6 @@ public class SlideDateTimeDialogFragment extends DialogFragment
         bundle.putInt("theme", theme);
         bundle.putInt("indicatorColor", indicatorColor);
         bundle.putBoolean("hideTime", hideTime);
-        bundle.putBoolean("hideDate", hideDate);
         dialogFragment.setArguments(bundle);
 
         // Return the fragment with its bundle
@@ -164,7 +161,6 @@ public class SlideDateTimeDialogFragment extends DialogFragment
         mTheme = args.getInt("theme");
         mIndicatorColor = args.getInt("indicatorColor");
         hideTime = args.getBoolean("hideTime");
-        hideDate = args.getBoolean("hideDate");
     }
 
     private void setupViews(View v) {
@@ -201,8 +197,7 @@ public class SlideDateTimeDialogFragment extends DialogFragment
     }
 
     private void initViewPager() {
-        mViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), hideTime,
-                hideDate);
+        mViewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager(), hideTime);
         mViewPager.setAdapter(mViewPagerAdapter);
 
         // Setting this custom layout for each tab ensures that the tabs will
@@ -329,12 +324,10 @@ public class SlideDateTimeDialogFragment extends DialogFragment
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
         private boolean hideTime = false;
-        private boolean hideDate = false;
 
-        ViewPagerAdapter(FragmentManager fm, boolean time, boolean hideTime) {
+        ViewPagerAdapter(FragmentManager fm, boolean time) {
             super(fm);
-            this.hideTime = hideTime;
-            this.hideDate = hideDate;
+            this.hideTime = time;
         }
 
         @Override

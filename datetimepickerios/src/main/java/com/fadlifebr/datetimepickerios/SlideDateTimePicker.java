@@ -139,22 +139,7 @@ public class SlideDateTimePicker
     {
         this.hideTime = hideTime;
     }
-    /**
-     * <p>Sets whether the TimePicker displays date view</p>
-     *
-     * <p>If this method is not called, all date views wil shows</p>
-     *
-     *
-     * <p>Must be called before {@link #show()}.</p>
-     *
-     * @param hideDate  <tt>true</tt> to force date view to hide,
-     *                      <tt>false</tt> default hide date value is false
-     *
-     */
-    private void setHideDate(boolean hideDate)
-    {
-        this.hideDate = hideDate;
-    }
+
 
     /**
      * Sets the theme of the dialog. If no theme is specified, it
@@ -205,8 +190,7 @@ public class SlideDateTimePicker
                         mIs24HourTime,
                         mTheme,
                         mIndicatorColor,
-                        hideTime,
-                        hideDate);
+                        hideTime);
 
         dialogFragment.show(mFragmentManager,
                 SlideDateTimeDialogFragment.TAG_SLIDE_DATE_TIME_DIALOG_FRAGMENT);
@@ -228,7 +212,6 @@ public class SlideDateTimePicker
         private Date maxDate;
         private boolean isClientSpecified24HourTime;
         private boolean hideTimeView = false;
-        private boolean hideDate = false;
         private boolean is24HourTime;
         private int theme;
         private int indicatorColor;
@@ -283,14 +266,6 @@ public class SlideDateTimePicker
             this.is24HourTime = is24HourTime;
             return this;
         }
-        /**
-         * @see SlideDateTimePicker#setHideDate(boolean)
-         */
-        public Builder setHideDate(boolean hideDate)
-        {
-            this.hideDate = hideDate;
-            return this;
-        }
 
         /**
          * @see SlideDateTimePicker#setHideTime(boolean)
@@ -339,7 +314,6 @@ public class SlideDateTimePicker
             picker.setTheme(theme);
             picker.setIndicatorColor(indicatorColor);
             picker.setHideTime(hideTimeView);
-            picker.setHideDate(hideDate);
 
             return picker;
         }
